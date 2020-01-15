@@ -4,7 +4,7 @@
 
   <PropertyGroup Label="Frameworks">
     <TargetFrameworks></TargetFrameworks>
-    <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">netstandard1.3;netstandard2.0;MonoAndroid90;Xamarin.iOS10;uap10.0.16299</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">netstandard1.3;netstandard2.0;MonoAndroid90;Xamarin.iOS10;uap10.0.16299;net472</TargetFrameworks>
     <TargetFrameworks Condition=" '$(OS)' != 'Windows_NT' ">netstandard1.3;netstandard2.0;MonoAndroid90;Xamarin.iOS10;Xamarin.Mac20</TargetFrameworks>
   </PropertyGroup>
 
@@ -23,6 +23,19 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="3.5.0.*" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta2-18618-05" PrivateAssets="All"/>
+  </ItemGroup>
+
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('net4')) ">
+    <PackageReference Include="Xamarin.Forms.Platform.WPF" Version="3.5.0.169047" />    
+    <Reference Include="PresentationCore">
+      <HintPath>$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\PresentationCore.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <HintPath>$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\PresentationFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <HintPath>$(ProgramFiles)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\WindowsBase.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('uap10.0')) ">
